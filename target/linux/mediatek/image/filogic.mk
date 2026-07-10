@@ -3776,6 +3776,19 @@ endif
 endef
 TARGET_DEVICES += xiaomi_redmi-router-ax6000-stock
 
+define Device/xiaomi_redmi-router-ax6000-110m
+  $(Device/xiaomi_redmi-router-ax6000-stock)
+  DEVICE_VARIANT := (hanwckf 110M layout)
+  DEVICE_DTS := mt7986a-xiaomi-redmi-router-ax6000-110m
+  SUPPORTED_DEVICES := xiaomi,redmi-router-ax6000
+  IMAGE_SIZE := 112640k
+  KERNEL_IN_UBI := 1
+  IMAGES := factory.bin sysupgrade.bin
+  IMAGE/factory.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+endef
+TARGET_DEVICES += xiaomi_redmi-router-ax6000-110m
+
 define Device/xiaomi_redmi-router-ax6000-ubootmod
   DEVICE_VENDOR := Xiaomi
   DEVICE_MODEL := Redmi Router AX6000
